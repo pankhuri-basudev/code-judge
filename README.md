@@ -1,4 +1,4 @@
-2..8 | ForEach-Object { Invoke-RestMethod http://localhost:8081/api/submissions/$_ | Select-Object id, language, verdict, detail }# Code Judge
+# Code Judge
 
 A mini online judge: submit Java / Python / C code, it runs against hidden test cases inside a
 locked-down Docker container and returns a verdict.
@@ -26,7 +26,9 @@ Try it:
 curl -X POST localhost:8080/api/submissions -H 'Content-Type: application/json' -d '{
   "problemId":1,"language":"python",
   "code":"a,b=map(int,input().split())\nprint(a+b)"}'
-curl localhost:8080/api/submissions/1
+curl localhost:8081git add .
+git commit -m "Fix README header"
+git push/api/submissions/1
 ```
 Verdicts: ACCEPTED, WRONG_ANSWER, TIME_LIMIT_EXCEEDED, RUNTIME_ERROR, COMPILATION_ERROR.
 
