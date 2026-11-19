@@ -1,4 +1,4 @@
-# Code Judge
+2..8 | ForEach-Object { Invoke-RestMethod http://localhost:8081/api/submissions/$_ | Select-Object id, language, verdict, detail }# Code Judge
 
 A mini online judge: submit Java / Python / C code, it runs against hidden test cases inside a
 locked-down Docker container and returns a verdict.
@@ -39,3 +39,9 @@ Each run: no network, 256 MB RAM, 0.5 CPU, 64 PIDs, all capabilities dropped, ha
 - [ ] Contests + Redis sorted-set leaderboard
 - [ ] React + Monaco editor frontend
 - [ ] JUnit tests, Docker Compose, deployment
+
+## Demo
+![Verdicts](docs/verdicts.png)
+
+## How it works
+Client → Spring Boot API → async thread pool → Docker sandbox (no network, memory/CPU limits, timeout) → verdict saved → client polls for the result.
